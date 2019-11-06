@@ -10,11 +10,11 @@ const {
 } = require("../controllers/herramientas.controller");
 
 const {
-  getHerr,
-  getHerrById,
-  createHerr,
-  updateHerr,
-  deleteHerr
+  getUsers,
+  getUsersById,
+  createUsers,
+  updateUsers,
+  deleteUsers
 } = require("../controllers/usuario.controller");
 
 router.get("/herramienta", getHerr);
@@ -23,10 +23,10 @@ router.post("/nueva-herramienta", createHerr);
 router.put("/herramienta/:id", updateHerr);
 router.delete("/herramienta/:id", deleteHerr);
 
-router.get("/usuario", getHerr);
-router.get("/usuario/:id", getHerrById);
-router.post("/nuevo-usuario", createHerr);
-router.put("/usuario/:id", updateHerr);
-router.delete("/usuario/:id", deleteHerr);
+router.get("/usuario", getUsers);
+router.get("/usuario/:id", getUsersById);
+router.post("/nuevo-usuario", createUsers);
+router.put("/usuario/:id", updateUsers);
+router.delete("/usuario/:id", deleteUsers);
 
 module.exports = router;
