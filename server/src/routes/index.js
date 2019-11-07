@@ -21,7 +21,7 @@ const {
   createUsers,
   updateUsers,
   deleteUsers
-} = require("../controllers/usuario.controller");
+} = require("../controllers/usuarios.controller");
 
 router.get("/usuario", getUsers);
 router.get("/usuario/:id", getUsersById);
@@ -49,7 +49,7 @@ const {
   createComen,
   updateComen,
   deleteComen
-} = require("../controllers/envios.controller");
+} = require("../controllers/comentarios.controller");
 
 router.get("/comentario", getComen);
 router.get("/comentario/:id", getComenById);
@@ -63,12 +63,26 @@ const {
   createVentas,
   updateVentas,
   deleteVentas
-} = require("../controllers/envios.controller");
+} = require("../controllers/ventas.controller");
 
 router.get("/venta", getVentas);
 router.get("/venta/:id", getVentasById);
 router.post("/nueva-venta", createVentas);
 router.put("/venta/:id", updateVentas);
 router.delete("/venta/:id", deleteVentas);
+
+const {
+  getDevolucion,
+  getDevolucionById,
+  createDevolucion,
+  updateDevolucion,
+  deleteDevolucion
+} = require("../controllers/devolucion.controller");
+
+router.get("/devolucion", getDevolucion);
+router.get("/devolucion/:id", getDevolucionById);
+router.post("/nueva-devolucion", createDevolucion);
+router.put("/devolucion/:id", updateDevolucion);
+router.delete("/devolucion/:id", deleteDevolucion);
 
 module.exports = router;
