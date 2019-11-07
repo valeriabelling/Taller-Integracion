@@ -113,4 +113,18 @@ router.post('/nueva-marca', createMarcas);
 router.put('/marca/:id', updateMarcas);
 router.delete('/marca/:id', deleteMarcas);
 
+const {
+    getPreg,
+    getPregById,
+    createPreg,
+    updatePreg,
+    deletePreg
+} = require('../controllers/preguntas.controller');
+
+router.get('/pregunta', getPreg);
+router.get('/pregunta/:id', getPregById);
+router.post('/nueva-pregunta', createPreg);
+router.put('/pregunta/:id', updatePreg);
+router.delete('/pregunta/:id', deletePreg);
+
 module.exports = router;
