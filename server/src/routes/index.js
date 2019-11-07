@@ -33,7 +33,7 @@ const {
   getEnvio,
   getEnvioById,
   createEnvio,
-  updateEvio,
+  updateEnvio,
   deleteEnvio
 } = require("../controllers/envios.controller");
 
@@ -42,5 +42,33 @@ router.get("/envio/:id", getEnvioById);
 router.post("/nuevo-envio", createEnvio);
 router.put("/envio/:id", updateEnvio);
 router.delete("/envio/:id", deleteEnvio);
+
+const {
+  getComen,
+  getComenById,
+  createComen,
+  updateComen,
+  deleteComen
+} = require("../controllers/envios.controller");
+
+router.get("/comentario", getComen);
+router.get("/comentario/:id", getComenById);
+router.post("/nuevo-comentario", createComen);
+router.put("/ecomentario/:id", updateComen);
+router.delete("/comentario/:id", deleteComen);
+
+const {
+  getVentas,
+  getVentasById,
+  createVentas,
+  updateVentas,
+  deleteVentas
+} = require("../controllers/envios.controller");
+
+router.get("/venta", getVentas);
+router.get("/venta/:id", getVentasById);
+router.post("/nueva-venta", createVentas);
+router.put("/venta/:id", updateVentas);
+router.delete("/venta/:id", deleteVentas);
 
 module.exports = router;
