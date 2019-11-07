@@ -41,6 +41,7 @@ const createEnvio = async (req, res) => {
   });
 };
 
+/* Tener en cuenta que esta funcionalidad estara conectada con el correo, para que la actualice automaticamente*/
 const updateEnvio = async (req, res) => {
   const idEnvio = parseInt(req.params.idEnvio);
   const { estado, fechaLlegada } = req.body;
@@ -52,8 +53,10 @@ const updateEnvio = async (req, res) => {
   res.json("Se ha actualizado de forma correcta los datos del envio.");
 };
 
-const deleteEvio = async (req, res) => {
+/* Tener en cuenta que esta funcionalidad solo ocurre cuando la direccion es incorrecta*/
+const deleteEnvio = async (req, res) => {
   const idEnvio = parseInt(req.params.idEnvio);
+  const { estado } = req.body;
 
   const response = await pool.query(
     "UPDATE Envio SET estado = $1 WHERE idEnvio = $2",

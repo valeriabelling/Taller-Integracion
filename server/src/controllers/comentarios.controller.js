@@ -15,13 +15,16 @@ const getComen = async(req, res) => {
     res.status(200).json(response.rows);
 };
 
-const getComenById = async(req, res) => {
-    const idComentario = parseInt(req.params.idComentario);
-    const response = await pool.query(
-        "SELECT * FROM Comentario WHERE idComentario = $1", [idComentario]
-    );
-    res.json(response.rows);
-};
+
+const getComenById = async (req, res) => {
+  const idComentario = parseInt(req.params.idComentario);
+  const response = await pool.query(
+    "SELECT * FROM Comentario WHERE idComentario = $1",
+    [idComentario]
+  );
+  res.json(response.rows);
+
+
 
 const createComen = async(req, res) => {
     const { idDetalle, descripcion, puntuacion } = req.body;
@@ -40,12 +43,16 @@ const createComen = async(req, res) => {
     });
 };
 
-const deleteComen = async(req, res) => {
-    const idComentario = parseInt(req.params.idComentario);
 
-    const response = await pool.query(
-        "DELETE Comentario WHERE idComentario = $1", [idComentario]
-    );
+/* Tener en cuenta que esta funcionalidad ocurrira solo si el administrador cree que el comentario es inapropiado*/
+const deleteComen = async (req, res) => {
+  const idComentario = parseInt(req.params.idComentario);
+
+  const response = await pool.query(
+    "DELETE * FROM Comentario WHERE idComentario = $1",
+    [idComentario]
+  );
+
 
     res.json(`El comentario ha sido eliminado correctamente.`);
 };

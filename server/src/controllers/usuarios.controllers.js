@@ -16,7 +16,7 @@ const getUsers = async (req, res) => {
 };
 
 const getUsersById = async (req, res) => {
-  const idUsers = parseInt(req.params.idUsuario);
+  const idUsuario = parseInt(req.params.idUsuario);
   const response = await pool.query(
     "SELECT * FROM Usuario WHERE idUsuario = $1",
     [idUsuario]
@@ -52,26 +52,30 @@ const createUsers = async (req, res) => {
   });
 };
 
+/* Tener en cuenta que esta funcionalidad la maneja el usuario*/
 const updateUsers = async (req, res) => {
   const idUsuario = parseInt(req.params.idUsuario);
   const { correoElectronico, telefono } = req.body;
 
   const response = await pool.query(
     "UPDATE Usuario SET corroElctronico = $1, telefono = $2 WHERE idUsuario = $3",
-    [cortreoElectronico, telefono, idUsuario]
+    [correoElectronico, telefono, idUsuario]
   );
   res.json("Se ha actualizado de forma correcta los datos del usuario.");
 };
 
+/* Tener en cuenta que esta funcionalidad solo la manejara el administrador, 
+ocurrira cuandoel administrador crea que el usuario use de forma inapropiada la plataforma*/
 const deleteUsers = async (req, res) => {
   const idUsuario = parseInt(req.params.idUsuario);
+  const { estado } = req.body;
 
   const response = await pool.query(
     "UPDATE Usuario SET estado = $1 WHERE idUsuario = $2",
     [estado, idUsuario]
   );
 
-  res.json(`Se ha eliminado el usuario ${idUsuario}.`);
+  res.json(`Se ha eliminado correctamente el usuario ${idUsuario}.`);
 };
 
 module.exports = {
