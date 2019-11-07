@@ -49,7 +49,7 @@ const deletePreg = async(req, res) => {
         "DELETE pregunta WHERE idpregunta = $1", [idpregunta]
     );
 
-    res.json(`La pregunta ha sido eliminado correctamente.`);
+    res.json("Se ha sido eliminado correctamente la pregunta.");
 };
 
 module.exports = {

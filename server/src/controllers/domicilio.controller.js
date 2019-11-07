@@ -4,7 +4,7 @@ const pool = new Pool({
     user: "postgres",
     host: "127.0.0.1",
     database: "taller",
-    password: "38387446",
+    password: "",
     port: "5432"
 });
 
@@ -36,7 +36,7 @@ const createDom = async(req, res) => {
         "INSERT INTO iddomicilio (idusuario, cp, localidad, calle, numero, descripcion) VALUES ($1, $2, $3, $4, $5, $6)", [idusuario, cp, localidad, calle, numero, descripcion]
     );
     res.json({
-        message: "Se ha agregado el domicilio correctamente.",
+        message: "Se ha agregado correctamente el domicilio.",
         body: {
             user: {
                 idusuario,

@@ -4,7 +4,7 @@ const pool = new Pool({
     user: "postgres",
     host: "127.0.0.1",
     database: "taller",
-    password: "38387446",
+    password: "",
     port: "5432"
 });
 
@@ -37,7 +37,7 @@ const createHerr = async(req, res) => {
         "INSERT INTO herramienta (idmarca, nombre, categoria, precio, caracteristica, cantidad, estado) VALUES ($1, $2, $3, $4, $5, $6, $7)", [idmarca, nombre, categoria, precio, caracteristica, cantidad, estado]
     );
     res.json({
-        message: "Se agregó correctamente la herramienta",
+        message: "Se ha agregado correctamente la herramienta",
         body: {
             user: {
                 idmarca,
@@ -59,19 +59,17 @@ const updateHerr = async(req, res) => {
     const response = await pool.query(
         "UPDATE herramienta SET precio = $1, caracteristica = $2, cantidad = $3 WHERE idherramienta = $4", [precio, caracteristica, cantidad, idherramienta]
     );
-    res.json("Se actualizó correctamente la herramienta");
+    res.json("Se ha actualizado correctamente la herramienta");
 };
 
 const deleteHerr = async(req, res) => {
     const idherramienta = parseInt(req.params.idherramienta);
-    const { estado, cantidad } = req.body;
+    const { estado } = req.body;
 
-    if (cantidad == 0) {
-        const response = await pool.query(
-            "UPDATE herramienta SET estado = $1 WHERE idherramienta = $2", [estado, idherramienta]
-        );
-    }
-    res.json(`Se eliminó correctamente la herramienta ${idherramienta}`);
+    const response = await pool.query(
+        "UPDATE herramienta SET estado = $1 WHERE idherramienta = $2", [estado, idherramienta]
+    );
+    res.json("Se ha eliminado correctamente la herramienta.");
 };
 
 module.exports = {

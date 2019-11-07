@@ -4,7 +4,7 @@ const pool = new Pool({
     user: "postgres",
     host: "127.0.0.1",
     database: "taller",
-    password: "38387446",
+    password: "",
     port: '5432',
 });
 
@@ -31,7 +31,7 @@ const createMarcas = async(req, res) => {
     const response = await pool.query(
         'INSERT INTO marca (nombre, estado) VALUES ($1, $2)', [nombre, estado]);
     res.json({
-        message: 'Marca agregada exitosamente',
+        message: 'Se ha agregado correctamente la marca.',
         body: {
             user: {
                 nombre,
@@ -46,29 +46,24 @@ const updateMarcas = async(req, res) => {
     const {
         estado
     } = req.body;
+    const response = await pool.query(
+        'UPDATE marca SET estado = $1 WHERE idmarca = $2', [
+            estado,
+            idmarca
+        ]);
+    res.json('Se ha actualizado correctamente la marca.');
+};
+
+const deleteMarcas = async(req, res) => {
+    const idmarca = parseInt(req.params.idmarca);
+    const { estado } = req.body;
+
     const response = await pool.query('UPDATE marca SET estado = $1 WHERE idmarca = $2', [
         estado,
         idmarca
     ]);
-    res.json('Marca actualizada exitosamente');
+    res.json("Se ha eliminado correctamente la marca.");
 };
-
-/*
-VER COMO HACER LA BAJA
-
-const deleteMarcas = async(req, res) => {
-    const idmarca = parseInt(req.params.idmarca);
-    const { cantidad } = req.body;
-
-    if (cantidad == 0) {
-        const response = await pool.query('UPDATE marca SET estado = $1 WHERE idmarca = $2', [
-            estado,
-            idherramienta
-        ]);
-    }
-    res.json(`Marca ${idherramienta} eliminada exitosamente`);
-};
-*/
 
 module.exports = {
     getMarcas,
