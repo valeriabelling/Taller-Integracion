@@ -127,4 +127,18 @@ router.post('/nueva-pregunta', createPreg);
 router.put('/pregunta/:id', updatePreg);
 router.delete('/pregunta/:id', deletePreg);
 
+const {
+    getDom,
+    getDomById,
+    createDom,
+    updateDom,
+    deleteDom
+} = require('../controllers/domicilio.controller');
+
+router.get('/domicilio', getDom);
+router.get('/domicilio/:id', getDomById);
+router.post('/nuevo-domicilio', createDom);
+router.put('/domicilio/:id', updateDom);
+router.delete('/domicilio/:id', deleteDom);
+
 module.exports = router;
