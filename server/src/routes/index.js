@@ -2,11 +2,11 @@ const { Router } = require("express");
 const router = Router();
 
 const {
-  getHerr,
-  getHerrById,
-  createHerr,
-  updateHerr,
-  deleteHerr
+    getHerr,
+    getHerrById,
+    createHerr,
+    updateHerr,
+    deleteHerr
 } = require("../controllers/herramientas.controller");
 
 router.get("/herramienta", getHerr);
@@ -16,11 +16,11 @@ router.put("/herramienta/:id", updateHerr);
 router.delete("/herramienta/:id", deleteHerr);
 
 const {
-  getUsers,
-  getUsersById,
-  createUsers,
-  updateUsers,
-  deleteUsers
+    getUsers,
+    getUsersById,
+    createUsers,
+    updateUsers,
+    deleteUsers
 } = require("../controllers/usuarios.controller");
 
 router.get("/usuario", getUsers);
@@ -30,11 +30,11 @@ router.put("/usuario/:id", updateUsers);
 router.delete("/usuario/:id", deleteUsers);
 
 const {
-  getEnvio,
-  getEnvioById,
-  createEnvio,
-  updateEnvio,
-  deleteEnvio
+    getEnvio,
+    getEnvioById,
+    createEnvio,
+    updateEnvio,
+    deleteEnvio
 } = require("../controllers/envios.controller");
 
 router.get("/envio", getEnvio);
@@ -44,25 +44,25 @@ router.put("/envio/:id", updateEnvio);
 router.delete("/envio/:id", deleteEnvio);
 
 const {
-  getComen,
-  getComenById,
-  createComen,
-  updateComen,
-  deleteComen
+    getComen,
+    getComenById,
+    createComen,
+    updateComen,
+    deleteComen
 } = require("../controllers/comentarios.controller");
 
 router.get("/comentario", getComen);
 router.get("/comentario/:id", getComenById);
 router.post("/nuevo-comentario", createComen);
-router.put("/ecomentario/:id", updateComen);
+router.put("/comentario/:id", updateComen);
 router.delete("/comentario/:id", deleteComen);
 
 const {
-  getVentas,
-  getVentasById,
-  createVentas,
-  updateVentas,
-  deleteVentas
+    getVentas,
+    getVentasById,
+    createVentas,
+    updateVentas,
+    deleteVentas
 } = require("../controllers/ventas.controller");
 
 router.get("/venta", getVentas);
@@ -72,11 +72,11 @@ router.put("/venta/:id", updateVentas);
 router.delete("/venta/:id", deleteVentas);
 
 const {
-  getDevolucion,
-  getDevolucionById,
-  createDevolucion,
-  updateDevolucion,
-  deleteDevolucion
+    getDevolucion,
+    getDevolucionById,
+    createDevolucion,
+    updateDevolucion,
+    deleteDevolucion
 } = require("../controllers/devolucion.controller");
 
 router.get("/devolucion", getDevolucion);
@@ -86,11 +86,11 @@ router.put("/devolucion/:id", updateDevolucion);
 router.delete("/devolucion/:id", deleteDevolucion);
 
 const {
-  getDetalle,
-  getDetalleById,
-  createDetalle,
-  updateDetalle,
-  deleteDetalle
+    getDetalle,
+    getDetalleById,
+    createDetalle,
+    updateDetalle,
+    deleteDetalle
 } = require("../controllers/detalles.controller");
 
 router.get("/detalle", getDetalle);
@@ -98,5 +98,19 @@ router.get("/detalle/:id", getDetalleById);
 router.post("/nuevo-detalle", createDetalle);
 router.put("/detalle/:id", updateDetalle);
 router.delete("/detalle/:id", deleteDetalle);
+
+const {
+    getMarcas,
+    getMarcasById,
+    createMarcas,
+    updateMarcas,
+    deleteMarcas
+} = require('../controllers/marcas.controller');
+
+router.get('/marca', getMarcas);
+router.get('/marca/:id', getMarcasById);
+router.post('/nueva-marca', createMarcas);
+router.put('/marca/:id', updateMarcas);
+router.delete('/marca/:id', deleteMarcas);
 
 module.exports = router;
