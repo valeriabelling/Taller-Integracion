@@ -85,4 +85,18 @@ router.post("/nueva-devolucion", createDevolucion);
 router.put("/devolucion/:id", updateDevolucion);
 router.delete("/devolucion/:id", deleteDevolucion);
 
+const {
+  getDetalle,
+  getDetalleById,
+  createDetalle,
+  updateDetalle,
+  deleteDetalle
+} = require("../controllers/detalles.controller");
+
+router.get("/detalle", getDetalle);
+router.get("/detalle/:id", getDetalleById);
+router.post("/nuevo-detalle", createDetalle);
+router.put("/detalle/:id", updateDetalle);
+router.delete("/detalle/:id", deleteDetalle);
+
 module.exports = router;
