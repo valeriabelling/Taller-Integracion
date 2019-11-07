@@ -25,10 +25,7 @@ const getDevolucionById = async (req, res) => {
 };
 
 const createDevolucion = async (req, res) => {
-  const {
-    descripcion,
-    estado
-  } = req.body;
+  const { descripcion, estado } = req.body;
   const response = await pool.query(
     "INSERT INTO Devolucion (descripcion, estado) VALUES ($1, $2)",
     [descripcion, estado]
@@ -44,25 +41,28 @@ const createDevolucion = async (req, res) => {
   });
 };
 
+/* Tener en cuenta que esta funcionalidad solo la manejara el administrador*/
 const updateDevolucion = async (req, res) => {
   const idDevolucion = parseInt(req.params.idDevolucion);
   const { estado } = req.body;
 
   const response = await pool.query(
-    "UPDATE Devolucion SET pestado = $1 WHERE idDevolucion = $2",
+    "UPDATE Devolucion SET estado = $1 WHERE idDevolucion = $2",
     [estado, idDevolucion]
   );
   res.json("Se ha actualizado correctamente la devolucion.");
 };
 
+/* Tener en cuenta que esta funcionalidad ocurrira solo si el comprador decide quedarse con la herramienta.*/
 const deleteDevolucion = async (req, res) => {
   const idDevolucion = parseInt(req.params.idDevolucion);
- 
-    const response = await pool.query(
-      "UPDATE Devolucion SET estado = $1 WHERE idDevolucion = $2",
-      [estado, idDevolucion]
-    );
-  
+  const { estado } = req.body;
+
+  const response = await pool.query(
+    "UPDATE Devolucion SET estado = $1 WHERE idDevolucion = $2",
+    [estado, idDevolucion]
+  );
+
   res.json(`Se ha eliminado correctamente la devolucion.`);
 };
 

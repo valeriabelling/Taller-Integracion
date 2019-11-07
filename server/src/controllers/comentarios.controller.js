@@ -16,7 +16,7 @@ const getComen = async (req, res) => {
 };
 
 const getComenById = async (req, res) => {
-  const idComen = parseInt(req.params.idComentario);
+  const idComentario = parseInt(req.params.idComentario);
   const response = await pool.query(
     "SELECT * FROM Comentario WHERE idComentario = $1",
     [idComentario]
@@ -42,11 +42,12 @@ const createComen = async (req, res) => {
   });
 };
 
+/* Tener en cuenta que esta funcionalidad ocurrira solo si el administrador cree que el comentario es inapropiado*/
 const deleteComen = async (req, res) => {
   const idComentario = parseInt(req.params.idComentario);
 
   const response = await pool.query(
-    "DELETE Comentario WHERE idComentario = $1",
+    "DELETE * FROM Comentario WHERE idComentario = $1",
     [idComentario]
   );
 
