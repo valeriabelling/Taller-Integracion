@@ -9,33 +9,23 @@ const pool = new Pool({
 });
 
 const getComen = async(req, res) => {
-    const response = await pool.query(
-        "SELECT * FROM Comentario ORDER BY idComentario ASC"
-    );
+    const response = await pool.query("SELECT * FROM Comentario ORDER BY idComentario ASC");
     res.status(200).json(response.rows);
 };
 
 const getComenById = async(req, res) => {
     const idComentario = parseInt(req.params.idComentario);
-    const response = await pool.query(
-        "SELECT * FROM Comentario WHERE idComentario = $1", [idComentario]
-    );
+    const response = await pool.query("SELECT * FROM Comentario WHERE idComentario = $1", [idComentario]);
     res.json(response.rows);
 }
 
 const createComen = async(req, res) => {
     const { idDetalle, descripcion, puntuacion } = req.body;
-    const response = await pool.query(
-        "INSERT INTO Comentario (idDetalle, descripcion, puntuacion) VALUES ($1, $2, $3)", [idDetalle, descripcion, puntuacion]
-    );
+    const response = await pool.query("INSERT INTO Comentario (idDetalle, descripcion, puntuacion) VALUES ($1, $2, $3)", [idDetalle, descripcion, puntuacion]);
     res.json({
         message: "Se ha agregado correctamente el comentario.",
         body: {
-            user: {
-                idDetalle,
-                descripcion,
-                puntuacion
-            }
+            user: { idDetalle, descripcion, puntuacion }
         }
     });
 };
@@ -43,12 +33,7 @@ const createComen = async(req, res) => {
 /* Tener en cuenta que esta funcionalidad ocurrira solo si el administrador cree que el comentario es inapropiado*/
 const deleteComen = async(req, res) => {
     const idComentario = parseInt(req.params.idComentario);
-
-    const response = await pool.query(
-        "DELETE * FROM Comentario WHERE idComentario = $1", [idComentario]
-    );
-
-
+    const response = await pool.query("DELETE * FROM Comentario WHERE idComentario = $1", [idComentario]);
     res.json(`Se ha eliminado correctamente el comentario.`);
 };
 

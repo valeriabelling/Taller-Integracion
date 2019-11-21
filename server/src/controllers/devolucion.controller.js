@@ -9,32 +9,23 @@ const pool = new Pool({
 });
 
 const getDevolucion = async(req, res) => {
-    const response = await pool.query(
-        "SELECT * FROM Devolucion ORDER BY idDevolucion ASC"
-    );
+    const response = await pool.query("SELECT * FROM Devolucion ORDER BY idDevolucion ASC");
     res.status(200).json(response.rows);
 };
 
 const getDevolucionById = async(req, res) => {
     const idDevolucion = parseInt(req.params.idDevolucion);
-    const response = await pool.query(
-        "SELECT * FROM Devolucion WHERE idDevolucion = $1", [idDevolucion]
-    );
+    const response = await pool.query("SELECT * FROM Devolucion WHERE idDevolucion = $1", [idDevolucion]);
     res.json(response.rows);
 };
 
 const createDevolucion = async(req, res) => {
     const { descripcion, estado } = req.body;
-    const response = await pool.query(
-        "INSERT INTO Devolucion (descripcion, estado) VALUES ($1, $2)", [descripcion, estado]
-    );
+    const response = await pool.query("INSERT INTO Devolucion (descripcion, estado) VALUES ($1, $2)", [descripcion, estado]);
     res.json({
         message: "Se ha agregado correctamente la devolución.",
         body: {
-            user: {
-                descripcion,
-                estado
-            }
+            user: { descripcion, estado }
         }
     });
 };
@@ -43,10 +34,7 @@ const createDevolucion = async(req, res) => {
 const updateDevolucion = async(req, res) => {
     const idDevolucion = parseInt(req.params.idDevolucion);
     const { estado } = req.body;
-
-    const response = await pool.query(
-        "UPDATE Devolucion SET estado = $1 WHERE idDevolucion = $2", [estado, idDevolucion]
-    );
+    const response = await pool.query("UPDATE Devolucion SET estado = $1 WHERE idDevolucion = $2", [estado, idDevolucion]);
     res.json("Se ha actualizado correctamente la devolución.");
 };
 
@@ -54,11 +42,7 @@ const updateDevolucion = async(req, res) => {
 const deleteDevolucion = async(req, res) => {
     const idDevolucion = parseInt(req.params.idDevolucion);
     const { estado } = req.body;
-
-    const response = await pool.query(
-        "UPDATE Devolucion SET estado = $1 WHERE idDevolucion = $2", [estado, idDevolucion]
-    );
-
+    const response = await pool.query("UPDATE Devolucion SET estado = $1 WHERE idDevolucion = $2", [estado, idDevolucion]);
     res.json("Se ha eliminado correctamente la devolución.");
 };
 

@@ -15,48 +15,17 @@ const getVentas = async(req, res) => {
 
 const getVentasById = async(req, res) => {
     const idVenta = parseInt(req.params.idVenta);
-    const response = await pool.query("SELECT * FROM Venta WHERE idVenta = $1", [
-        idVenta
-    ]);
+    const response = await pool.query("SELECT * FROM Venta WHERE idVenta = $1", [idVenta]);
     res.json(response.rows);
 };
 
 const createVentas = async(req, res) => {
-    const {
-        idVendedor,
-        idComprador,
-        idEnvio,
-        fecha,
-        monto,
-        estado,
-        codigoPago,
-        detallePago
-    } = req.body;
-    const response = await pool.query(
-        "INSERT INTO Venta (idVendedor, idComprador, idEnvio, fecha, monto, estado, codigoPago, detallePago) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)", [
-            idVendedor,
-            idComprador,
-            idEnvio,
-            fecha,
-            monto,
-            estado,
-            codigoPago,
-            detallePago
-        ]
-    );
+    const { idVendedor, idComprador, idEnvio, fecha, monto, estado, codigoPago, detallePago } = req.body;
+    const response = await pool.query("INSERT INTO Venta (idVendedor, idComprador, idEnvio, fecha, monto, estado, codigoPago, detallePago) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)", [idVendedor, idComprador, idEnvio, fecha, monto, estado, codigoPago, detallePago]);
     res.json({
         message: "Se ha realizado correctamente la venta.",
         body: {
-            user: {
-                dVendedor,
-                idComprador,
-                idEnvio,
-                fecha,
-                monto,
-                estado,
-                codigoPago,
-                detallePago
-            }
+            user: { dVendedor, idComprador, idEnvio, fecha, monto, estado, codigoPago, detallePago }
         }
     });
 };
@@ -65,10 +34,7 @@ const createVentas = async(req, res) => {
 const updateVentas = async(req, res) => {
     const idVenta = parseInt(req.params.idVenta);
     const { estado, detallePago } = req.body;
-
-    const response = await pool.query(
-        "UPDATE Venta SET estado = $1, detallePago = $2 WHERE idVenta = $3", [estado, detallePago, idVenta]
-    );
+    const response = await pool.query("UPDATE Venta SET estado = $1, detallePago = $2 WHERE idVenta = $3", [estado, detallePago, idVenta]);
     res.json("Se ha actualizado correctamente la venta.");
 };
 
@@ -76,11 +42,7 @@ const updateVentas = async(req, res) => {
 const deleteVentas = async(req, res) => {
     const idVenta = parseInt(req.params.idVenta);
     const { estado } = req.body;
-
-    const response = await pool.query(
-        "UPDATE Venta SET estado = $1 WHERE idVenta = $2", [estado, idVenta]
-    );
-
+    const response = await pool.query("UPDATE Venta SET estado = $1 WHERE idVenta = $2", [estado, idVenta]);
     res.json("Se ha eliminado correctamente la venta.");
 };
 

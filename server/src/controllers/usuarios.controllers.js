@@ -9,43 +9,23 @@ const pool = new Pool({
 });
 
 const getUsers = async(req, res) => {
-    const response = await pool.query(
-        "SELECT * FROM Usuario ORDER BY idUsuario ASC"
-    );
+    const response = await pool.query("SELECT * FROM Usuario ORDER BY idUsuario ASC");
     res.status(200).json(response.rows);
 };
 
 const getUsersById = async(req, res) => {
     const idUsuario = parseInt(req.params.idUsuario);
-    const response = await pool.query(
-        "SELECT * FROM Usuario WHERE idUsuario = $1", [idUsuario]
-    );
+    const response = await pool.query("SELECT * FROM Usuario WHERE idUsuario = $1", [idUsuario]);
     res.json(response.rows);
 };
 
 const createUsers = async(req, res) => {
-    const {
-        nombre,
-        apellido,
-        correoElectronico,
-        telefono,
-        estado,
-        registrado
-    } = req.body;
-    const response = await pool.query(
-        "INSERT INTO Usuario (nombre, apellido, correoElectronico, telefono, estado, registrado) VALUES ($1, $2, $3, $4, $5, $6)", [nombre, apellido, correoElectronico, telefono, estado, registrado]
-    );
+    const { nombre, apellido, correoElectronico, telefono, estado, registrado } = req.body;
+    const response = await pool.query("INSERT INTO Usuario (nombre, apellido, correoElectronico, telefono, estado, registrado) VALUES ($1, $2, $3, $4, $5, $6)", [nombre, apellido, correoElectronico, telefono, estado, registrado]);
     res.json({
         message: "Se ha agregado correctamente el usuario.",
         body: {
-            user: {
-                nombre,
-                apellido,
-                correoElectronico,
-                telefono,
-                estado,
-                registrado
-            }
+            user: { nombre, apellido, correoElectronico, telefono, estado, registrado }
         }
     });
 };
@@ -54,10 +34,7 @@ const createUsers = async(req, res) => {
 const updateUsers = async(req, res) => {
     const idUsuario = parseInt(req.params.idUsuario);
     const { correoElectronico, telefono } = req.body;
-
-    const response = await pool.query(
-        "UPDATE Usuario SET corroElctronico = $1, telefono = $2 WHERE idUsuario = $3", [correoElectronico, telefono, idUsuario]
-    );
+    const response = await pool.query("UPDATE Usuario SET corroElctronico = $1, telefono = $2 WHERE idUsuario = $3", [correoElectronico, telefono, idUsuario]);
     res.json("Se ha actualizado correctamente el usuario.");
 };
 
@@ -66,11 +43,7 @@ ocurrira cuandoel administrador crea que el usuario use de forma inapropiada la 
 const deleteUsers = async(req, res) => {
     const idUsuario = parseInt(req.params.idUsuario);
     const { estado } = req.body;
-
-    const response = await pool.query(
-        "UPDATE Usuario SET estado = $1 WHERE idUsuario = $2", [estado, idUsuario]
-    );
-
+    const response = await pool.query("UPDATE Usuario SET estado = $1 WHERE idUsuario = $2", [estado, idUsuario]);
     res.json("Se ha eliminado correctamente el usuario.");
 };
 
