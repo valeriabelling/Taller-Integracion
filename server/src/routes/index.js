@@ -21,7 +21,7 @@ const {
     createUsers,
     updateUsers,
     deleteUsers
-} = require("../controllers/usuarios.controller");
+} = require("../controllers/usuarios.controllers");
 
 router.get("/usuario", getUsers);
 router.get("/usuario/:id", getUsersById);
@@ -47,14 +47,12 @@ const {
     getComen,
     getComenById,
     createComen,
-    updateComen,
     deleteComen
 } = require("../controllers/comentarios.controller");
 
 router.get("/comentario", getComen);
 router.get("/comentario/:id", getComenById);
 router.post("/nuevo-comentario", createComen);
-router.put("/comentario/:id", updateComen);
 router.delete("/comentario/:id", deleteComen);
 
 const {
@@ -89,14 +87,12 @@ const {
     getDetalle,
     getDetalleById,
     createDetalle,
-    updateDetalle,
     deleteDetalle
 } = require("../controllers/detalles.controller");
 
 router.get("/detalle", getDetalle);
 router.get("/detalle/:id", getDetalleById);
 router.post("/nuevo-detalle", createDetalle);
-router.put("/detalle/:id", updateDetalle);
 router.delete("/detalle/:id", deleteDetalle);
 
 const {
@@ -117,14 +113,12 @@ const {
     getPreg,
     getPregById,
     createPreg,
-    updatePreg,
     deletePreg
 } = require('../controllers/preguntas.controller');
 
 router.get('/pregunta', getPreg);
 router.get('/pregunta/:id', getPregById);
 router.post('/nueva-pregunta', createPreg);
-router.put('/pregunta/:id', updatePreg);
 router.delete('/pregunta/:id', deletePreg);
 
 const {

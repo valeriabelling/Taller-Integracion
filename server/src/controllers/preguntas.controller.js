@@ -4,7 +4,7 @@ const pool = new Pool({
     user: "postgres",
     host: "127.0.0.1",
     database: "taller",
-    password: "",
+    password: "38387446",
     port: "5432"
 });
 
@@ -56,6 +56,5 @@ module.exports = {
     getPreg,
     getPregById,
     createPreg,
-    updatePreg,
     deletePreg
 };
