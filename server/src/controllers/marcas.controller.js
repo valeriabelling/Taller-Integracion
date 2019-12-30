@@ -14,7 +14,7 @@ const getMarcas = async(req, res) => {
 };
 
 const getMarcasById = async(req, res) => {
-    const idmarca = parseInt(req.params.idmarca);
+    const idmarca = parseInt(req.params.id);
     const response = await pool.query('SELECT * FROM marca WHERE idmarca = $1', [idmarca]);
     res.json(response.rows);
 };
@@ -31,14 +31,14 @@ const createMarcas = async(req, res) => {
 };
 
 const updateMarcas = async(req, res) => {
-    const idmarca = parseInt(req.params.idmarca);
+    const idmarca = parseInt(req.params.id);
     const { estado } = req.body;
     const response = await pool.query('UPDATE marca SET estado = $1 WHERE idmarca = $2', [estado, idmarca]);
     res.json('Se ha actualizado correctamente la marca.');
 };
 
 const deleteMarcas = async(req, res) => {
-    const idmarca = parseInt(req.params.idmarca);
+    const idmarca = parseInt(req.params.id);
     const { estado } = req.body;
     const response = await pool.query('UPDATE marca SET estado = $1 WHERE idmarca = $2', [estado, idmarca]);
     res.json("Se ha eliminado correctamente la marca.");

@@ -14,7 +14,7 @@ const getPreg = async(req, res) => {
 };
 
 const getPregById = async(req, res) => {
-    const idpregunta = parseInt(req.params.idpregunta);
+    const idpregunta = parseInt(req.params.id);
     const response = await pool.query("SELECT * FROM pregunta WHERE idpregunta = $1", [idpregunta]);
     res.json(response.rows);
 };
@@ -31,7 +31,7 @@ const createPreg = async(req, res) => {
 };
 
 const deletePreg = async(req, res) => {
-    const idpregunta = parseInt(req.params.idpregunta);
+    const idpregunta = parseInt(req.params.id);
     const response = await pool.query("DELETE pregunta WHERE idpregunta = $1", [idpregunta]);
     res.json("Se ha sido eliminado correctamente la pregunta.");
 };

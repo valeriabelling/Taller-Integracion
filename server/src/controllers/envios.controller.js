@@ -9,40 +9,40 @@ const pool = new Pool({
 });
 
 const getEnvio = async(req, res) => {
-    const response = await pool.query("SELECT * FROM Envio ORDER BY idEnvio ASC");
+    const response = await pool.query("SELECT * FROM envio ORDER BY idenvio ASC");
     res.status(200).json(response.rows);
 };
 
 const getEnvioById = async(req, res) => {
-    const idEnvio = parseInt(req.params.idEnvio);
-    const response = await pool.query("SELECT * FROM Envio WHERE idEnvio = $1", [idEnvio]);
+    const idenvio = parseInt(req.params.id);
+    const response = await pool.query("SELECT * FROM envio WHERE idenvio = $1", [idenvio]);
     res.json(response.rows);
 };
 
 const createEnvio = async(req, res) => {
-    const { idDomicilio, codigoTraking, estado, fechaEnvio, fechaLlegada } = req.body;
-    const response = await pool.query("INSERT INTO envio (idDomicilio, codigoTraking, estado, fechaEnvio, fechaLlegada) VALUES ($1, $2, $3, $4, $5)", [idDomicilio, codigoTraking, estado, fechaEnvio, fechaLlegada]);
+    const { iddomicilio, codigotraking, estado, fechaenvio, fechallegada } = req.body;
+    const response = await pool.query("INSERT INTO envio (iddomicilio, codigotraking, estado, fechaenvio, fechallegada) VALUES ($1, $2, $3, $4, $5)", [iddomicilio, codigotraking, estado, fechaenvio, fechallegada]);
     res.json({
         message: "Se ha agregado correctamente el envío.",
         body: {
-            user: { idDomicilio, codigoTraking, estado, fechaEnvio, fechaLlegada }
+            user: { iddomicilio, codigotraking, estado, fechaenvio, fechallegada }
         }
     });
 };
 
 /* Tener en cuenta que esta funcionalidad estara conectada con el correo, para que la actualice automaticamente*/
 const updateEnvio = async(req, res) => {
-    const idEnvio = parseInt(req.params.idEnvio);
-    const { estado, fechaLlegada } = req.body;
-    const response = await pool.query("UPDATE Envio SET estado = $1, fechaLlegada = $2 WHERE idEnvio = $3", [estado, fechaLlegada, idEnvio]);
+    const idenvio = parseInt(req.params.id);
+    const { estado, fechallegada } = req.body;
+    const response = await pool.query("UPDATE envio SET estado = $1, fechallegada = $2 WHERE idenvio = $3", [estado, fechallegada, idenvio]);
     res.json("Se ha actualizado correctamente el envío.");
 };
 
 /* Tener en cuenta que esta funcionalidad solo ocurre cuando la direccion es incorrecta*/
 const deleteEnvio = async(req, res) => {
-    const idEnvio = parseInt(req.params.idEnvio);
+    const idenvio = parseInt(req.params.id);
     const { estado } = req.body;
-    const response = await pool.query("UPDATE Envio SET estado = $1 WHERE idEnvio = $2", [estado, idEnvio]);
+    const response = await pool.query("UPDATE envio SET estado = $1 WHERE idenvio = $2", [estado, idenvio]);
     res.json(`Se ha eliminado correctamente el envío.`);
 };
 

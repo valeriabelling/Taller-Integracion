@@ -14,7 +14,7 @@ const getHerr = async(req, res) => {
 };
 
 const getHerrById = async(req, res) => {
-    const idherramienta = parseInt(req.params.idherramienta);
+    const idherramienta = parseInt(req.params.id);
     const response = await pool.query("SELECT * FROM herramienta WHERE idherramienta = $1", [idherramienta]);
     res.json(response.rows);
 };
@@ -31,15 +31,15 @@ const createHerr = async(req, res) => {
 };
 
 const updateHerr = async(req, res) => {
-    const idherramienta = parseInt(req.params.idherramienta);
+    const idherramienta = parseInt(req.params.id);
     const { precio, caracteristica, cantidad } = req.body;
     const response = await pool.query("UPDATE herramienta SET precio = $1, caracteristica = $2, cantidad = $3 WHERE idherramienta = $4", [precio, caracteristica, cantidad, idherramienta]);
     res.json("Se ha actualizado correctamente la herramienta");
 };
 
 const deleteHerr = async(req, res) => {
-    const idherramienta = parseInt(req.params.idherramienta);
-    const { estado } = req.body;
+    const idherramienta = parseInt(req.params.id);
+    const estado = false;
     const response = await pool.query("UPDATE herramienta SET estado = $1 WHERE idherramienta = $2", [estado, idherramienta]);
     res.json("Se ha eliminado correctamente la herramienta.");
 };

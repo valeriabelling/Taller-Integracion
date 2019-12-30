@@ -14,8 +14,8 @@ const getDom = async(req, res) => {
 };
 
 const getDomById = async(req, res) => {
-    const iddomicilio = parseInt(req.params.iddomicilio);
-    const response = await pool.query("SELECT * FROM Usuario WHERE iddomicilio = $1", [iddomicilio]);
+    const iddomicilio = parseInt(req.params.id);
+    const response = await pool.query("SELECT * FROM domicilio WHERE iddomicilio = $1", [iddomicilio]);
     res.json(response.rows);
 };
 
@@ -31,14 +31,14 @@ const createDom = async(req, res) => {
 };
 
 const updateDom = async(req, res) => {
-    const iddomicilio = parseInt(req.params.iddomicilio);
+    const iddomicilio = parseInt(req.params.id);
     const { cp, localidad, calle, numero, descripcion } = req.body;
     const response = await pool.query("UPDATE domicilio SET cp = $1, localidad = $2, calle = $3, numero = $4, descripcion = $5 WHERE iddomicilio = $6", [cp, localidad, calle, numero, descripcion, iddomicilio]);
     res.json("Se ha actualizado correctamente el domicilio.");
 };
 
 const deleteDom = async(req, res) => {
-    const iddomicilio = parseInt(req.params.iddomicilio);
+    const iddomicilio = parseInt(req.params.id);
     const response = await pool.query("DELETE domicilio WHERE iddomicilio = $1", [iddomicilio]);
     res.json("Se ha eliminado correctamente el domicilio.");
 };

@@ -7,7 +7,7 @@ const {
     createHerr,
     updateHerr,
     deleteHerr
-} = require("../controllers/herramientas.controller");
+} = require("../controllers/herramientasController");
 
 router.get("/herramienta", getHerr);
 router.get("/herramienta/:id", getHerrById);

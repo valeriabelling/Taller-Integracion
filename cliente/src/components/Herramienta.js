@@ -27,4 +27,4 @@ const Herramienta = ({ herramienta, eliminarHerr }) => (
   </div>
 );
 
-export default Cita;
+export default Herramienta;
